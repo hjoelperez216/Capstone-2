@@ -2,60 +2,60 @@ package com.techelevator.tenmo.model;
 
 public class Transfers {
 
-	private Long transfer_id;
-	private int transfer_type_id;
-	private int transfer_status_id;
-	private int account_from;
-	private int account_to;
+	private Long transferId;
+	private int transferTypeId;
+	private int transferStatusId;
+	private int accountFrom;
+	private int accountTo;
 	private double amount;
 	
 	public Transfers(Long transfer_id, int transfer_type_id, int transfer_status_id, int account_from, int account_to, double amount) {
-		this.transfer_id        = transfer_id;
-		this.transfer_type_id   = transfer_type_id;
-		this.transfer_status_id = transfer_status_id;
-		this.account_from       = account_from;
-		this.account_to         = account_to;
+		this.transferId        = transfer_id;
+		this.transferTypeId   = transfer_type_id;
+		this.transferStatusId = transfer_status_id;
+		this.accountFrom       = account_from;
+		this.accountTo         = account_to;
 		this.amount             = amount;	
 	}
 
 	public Long getTransfer_id() {
-		return transfer_id;
+		return transferId;
 	}
 
 	public void setTransfer_id(Long transfer_id) {
-		this.transfer_id = transfer_id;
+		this.transferId = transfer_id;
 	}
 
 	public int getTransfer_type_id() {
-		return transfer_type_id;
+		return transferTypeId;
 	}
 
 	public void setTransfer_type_id(int transfer_type_id) {
-		this.transfer_type_id = transfer_type_id;
+		this.transferTypeId = transfer_type_id;
 	}
 
 	public int getTransfer_status_id() {
-		return transfer_status_id;
+		return transferStatusId;
 	}
 
 	public void setTransfer_status_id(int transfer_status_id) {
-		this.transfer_status_id = transfer_status_id;
+		this.transferStatusId = transfer_status_id;
 	}
 
 	public int getAccount_from() {
-		return account_from;
+		return accountFrom;
 	}
 
 	public void setAccount_from(int account_from) {
-		this.account_from = account_from;
+		this.accountFrom = account_from;
 	}
 
 	public int getAccount_to() {
-		return account_to;
+		return accountTo;
 	}
 
 	public void setAccount_to(int account_to) {
-		this.account_to = account_to;
+		this.accountTo = account_to;
 	}
 
 	public double getAmount() {
@@ -68,9 +68,9 @@ public class Transfers {
 
 	@Override
 	public String toString() {
-		return "transfers [transfer_id=" + transfer_id + ", transfer_type_id=" + transfer_type_id
-				+ ", transfer_status_id=" + transfer_status_id + ", account_from=" + account_from + ", account_to="
-				+ account_to + ", amount=" + amount + "]";
+		return "transfers [transfer_id=" + transferId + ", transfer_type_id=" + transferTypeId
+				+ ", transfer_status_id=" + transferStatusId + ", account_from=" + accountFrom + ", account_to="
+				+ accountTo + ", amount=" + amount + "]";
 	}
 	
 	
