@@ -24,9 +24,9 @@ DROP SEQUENCE IF EXISTS seq_user_id;
 DROP SEQUENCE IF EXISTS seq_account_id;
 DROP SEQUENCE IF EXISTS seq_transfer_id;
 
-drop USER if exists tenmo_owner; 
+--drop USER if exists tenmo_owner; 
 
-drop USER if exists tenmo_appuser;
+--drop USER if exists tenmo_appuser;
 
 CREATE SEQUENCE seq_transfer_type_id
   INCREMENT BY 1
@@ -120,8 +120,8 @@ INSERT INTO accounts (user_id,balance) VALUES (2,1000);
 -- This script creates the database users and grants them the necessary permissions
 -- ********************************************************************************
 
-CREATE USER tenmo_owner
-WITH PASSWORD 'tebucks';
+--CREATE USER tenmo_owner
+--WITH PASSWORD 'tebucks';
 
 GRANT ALL
 ON ALL TABLES IN SCHEMA public
@@ -131,8 +131,8 @@ GRANT ALL
 ON ALL SEQUENCES IN SCHEMA public
 TO tenmo_owner;
 
-CREATE USER tenmo_appuser
-WITH PASSWORD 'tebucks';
+--CREATE USER tenmo_appuser
+--WITH PASSWORD 'tebucks';
 
 GRANT SELECT, INSERT, UPDATE, DELETE
 ON ALL TABLES IN SCHEMA public

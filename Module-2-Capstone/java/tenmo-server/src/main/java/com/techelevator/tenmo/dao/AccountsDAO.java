@@ -4,7 +4,10 @@ import com.techelevator.tenmo.model.Accounts;
 
 public interface AccountsDAO {
 	
-	Accounts findByUserId(Long user_Id);
+	Accounts findAccountByUserId(Long user_Id);
+	Accounts findAccountByAccountId(Long account_Id);
+	Accounts getBalanceByUserId(Long user_Id);
+	Accounts getBalanceByAccountId(Long user_Id);
 	
 
 }
