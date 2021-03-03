@@ -9,69 +9,106 @@ public class Transfers {
 	private int accountTo;
 	private double amount;
 	
-	public Transfers(Long transfer_id, int transfer_type_id, int transfer_status_id, int account_from, int account_to, double amount) {
-		this.transferId        = transfer_id;
-		this.transferTypeId   = transfer_type_id;
-		this.transferStatusId = transfer_status_id;
-		this.accountFrom       = account_from;
-		this.accountTo         = account_to;
-		this.amount             = amount;	
+	public Transfers() {
+		this.transferId        = transferId;
+		this.transferTypeId    = transferTypeId;
+		this.transferStatusId  = transferStatusId;
+		this.accountFrom       = accountFrom;
+		this.accountTo         = accountTo;
+		this.amount            = amount;	
 	}
 
-	public Long getTransfer_id() {
+	/**
+	 * @return the transferId
+	 */
+	public Long getTransferId() {
 		return transferId;
 	}
 
-	public void setTransfer_id(Long transfer_id) {
-		this.transferId = transfer_id;
+	/**
+	 * @param transferId the transferId to set
+	 */
+	public void setTransferId(Long transferId) {
+		this.transferId = transferId;
 	}
 
-	public int getTransfer_type_id() {
+	/**
+	 * @return the transferTypeId
+	 */
+	public int getTransferTypeId() {
 		return transferTypeId;
 	}
 
-	public void setTransfer_type_id(int transfer_type_id) {
-		this.transferTypeId = transfer_type_id;
+	/**
+	 * @param transferTypeId the transferTypeId to set
+	 */
+	public void setTransferTypeId(int transferTypeId) {
+		this.transferTypeId = transferTypeId;
 	}
 
-	public int getTransfer_status_id() {
+	/**
+	 * @return the transferStatusId
+	 */
+	public int getTransferStatusId() {
 		return transferStatusId;
 	}
 
-	public void setTransfer_status_id(int transfer_status_id) {
-		this.transferStatusId = transfer_status_id;
+	/**
+	 * @param transferStatusId the transferStatusId to set
+	 */
+	public void setTransferStatusId(int transferStatusId) {
+		this.transferStatusId = transferStatusId;
 	}
 
-	public int getAccount_from() {
+	/**
+	 * @return the accountFrom
+	 */
+	public int getAccountFrom() {
 		return accountFrom;
 	}
 
-	public void setAccount_from(int account_from) {
-		this.accountFrom = account_from;
+	/**
+	 * @param accountFrom the accountFrom to set
+	 */
+	public void setAccountFrom(int accountFrom) {
+		this.accountFrom = accountFrom;
 	}
 
-	public int getAccount_to() {
+	/**
+	 * @return the accountTo
+	 */
+	public int getAccountTo() {
 		return accountTo;
 	}
 
-	public void setAccount_to(int account_to) {
-		this.accountTo = account_to;
+	/**
+	 * @param accountTo the accountTo to set
+	 */
+	public void setAccountTo(int accountTo) {
+		this.accountTo = accountTo;
 	}
 
+	/**
+	 * @return the amount
+	 */
 	public double getAmount() {
 		return amount;
 	}
 
+	/**
+	 * @param amount the amount to set
+	 */
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
 	@Override
 	public String toString() {
-		return "transfers [transfer_id=" + transferId + ", transfer_type_id=" + transferTypeId
-				+ ", transfer_status_id=" + transferStatusId + ", account_from=" + accountFrom + ", account_to="
-				+ accountTo + ", amount=" + amount + "]";
+		return "Transfers [transferId=" + transferId + ", transferTypeId=" + transferTypeId + ", transferStatusId="
+				+ transferStatusId + ", accountFrom=" + accountFrom + ", accountTo=" + accountTo + ", amount=" + amount
+				+ "]";
 	}
+
 	
 	
 	

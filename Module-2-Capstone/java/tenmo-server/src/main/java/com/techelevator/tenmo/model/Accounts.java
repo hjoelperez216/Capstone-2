@@ -2,30 +2,30 @@ package com.techelevator.tenmo.model;
 
 public class Accounts {
 
-	private Long account_id;
-	private int user_id;
+	private Long accountId;
+	private int userId;
 	private double balance;
 	
-	public Accounts(Long account_id, int user_id, double balance) {
-		this.account_id = account_id;
-		this.user_id = user_id;
+	public Accounts() {
+		this.accountId = accountId;
+		this.userId = userId;
 		this.balance = balance;
 	}
 
-	public Long getAccount_id() {
-		return account_id;
+	public Long getAccountId() {
+		return accountId;
 	}
 
-	public void setAccount_id(Long account_id) {
-		this.account_id = account_id;
+	public void setAccountId(Long account_id) {
+		this.accountId = account_id;
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int user_id) {
+		this.userId = user_id;
 	}
 
 	public double getBalance() {
@@ -38,8 +38,10 @@ public class Accounts {
 
 	@Override
 	public String toString() {
-		return "accounts [account_id=" + account_id + ", user_id=" + user_id + ", balance=" + balance + "]";
+		return "Accounts [accountId=" + accountId + ", userId=" + userId + ", balance=" + balance + "]";
 	}
+
+
 	
 	
 	

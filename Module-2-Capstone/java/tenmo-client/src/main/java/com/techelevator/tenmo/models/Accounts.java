@@ -6,7 +6,7 @@ public class Accounts {
 	private int user_id;
 	private double balance;
 	
-	public Accounts(Long account_id, int user_id, double balance) {
+	public Accounts() {
 		this.account_id = account_id;
 		this.user_id = user_id;
 		this.balance = balance;
