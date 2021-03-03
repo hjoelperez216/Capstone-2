@@ -1,12 +1,12 @@
 package com.techelevator.tenmo.models;
 
-public class accounts {
+public class Accounts {
 
 	private Long account_id;
 	private int user_id;
 	private double balance;
 	
-	public accounts(Long account_id, int user_id, double balance) {
+	public Accounts(Long account_id, int user_id, double balance) {
 		this.account_id = account_id;
 		this.user_id = user_id;
 		this.balance = balance;
