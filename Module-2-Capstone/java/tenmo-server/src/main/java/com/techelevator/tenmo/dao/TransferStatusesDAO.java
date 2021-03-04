@@ -1,10 +1,10 @@
 package com.techelevator.tenmo.dao;
 
-import com.techelevator.tenmo.model.Transfer_Statuses;
+import com.techelevator.tenmo.model.TransferStatuses;
 
 public interface TransferStatusesDAO {
 
-	Transfer_Statuses getTransferStatusById(Long id);
-	Transfer_Statuses updateTransferStatusById(Long id);
+	TransferStatuses getTransferStatusById(Long id);
+	TransferStatuses updateTransferStatusById(Long id);
 	
 }

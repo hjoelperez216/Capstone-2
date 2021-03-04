@@ -5,32 +5,32 @@ public class TransferTypes {
 	private Long transferTypes;
 	private String transferTypeDesc;
 	
-	public TransferTypes(Long transfer_types, String transfer_type_desc) {
-		this.transferTypes = transfer_types;
-		this.transferTypeDesc = transfer_type_desc;
+	public TransferTypes() {
+		this.transferTypes = transferTypes;
+		this.transferTypeDesc = transferTypeDesc;
 	}
 
-	public Long getTransfer_types() {
+	public Long getTransferTypes() {
 		return transferTypes;
 	}
 
-	public void setTransfer_types(Long transfer_types) {
-		this.transferTypes = transfer_types;
+	public void setTransferTypes(Long transferTypes) {
+		this.transferTypes = transferTypes;
 	}
 
-	public String getTransfer_type_desc() {
+	public String getTransferTypeDesc() {
 		return transferTypeDesc;
 	}
 
-	public void setTransfer_type_desc(String transfer_type_desc) {
-		this.transferTypeDesc = transfer_type_desc;
+	public void setTransferTypeDesc(String transferTypeDesc) {
+		this.transferTypeDesc = transferTypeDesc;
 	}
 
 	@Override
 	public String toString() {
-		return "transfer_types [transfer_types=" + transferTypes + ", transfer_type_desc=" + transferTypeDesc + "]";
+		return "TransferTypes [transferTypes=" + transferTypes + ", transferTypeDesc=" + transferTypeDesc + "]";
 	}
-	
+
 	
 
 }

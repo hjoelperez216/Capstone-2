@@ -65,6 +65,25 @@ public class JDBCAccountsDAO implements AccountsDAO {
 		}
 	}
 	
+	@Override
+	public Accounts getBalanceByUsername(String username) {
+		
+		String sql = "select balance "
+				   + "from users "
+				   + "join accounts "
+				   + "on accounts.user_id = users.user_id "
+				   + "where username = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+		
+		
+		if(results.next()) {
+			return mapRowToAccounts(results);
+		} else {
+			return null;
+		}
+	}
+	
 	  private Accounts mapRowToAccounts(SqlRowSet results) {
 	        Accounts accountRow = new Accounts();
 	        accountRow.setAccountId(results.getLong("account_id")); 
