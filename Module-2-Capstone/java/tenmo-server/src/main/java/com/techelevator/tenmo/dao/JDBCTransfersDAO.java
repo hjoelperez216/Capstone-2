@@ -34,7 +34,9 @@ public class JDBCTransfersDAO implements TransfersDAO {
 
 	@Override
 	public List<Transfers> getAllTransfersTo() {
-		// TODO Auto-generated method stub
+	
+		//String sql = ""
+		
 		return null;
 	}
 
@@ -45,9 +47,27 @@ public class JDBCTransfersDAO implements TransfersDAO {
 	}
 
 	@Override
-	public Transfers getAmountFromAccount(Long transferId, int accountFrom, double amount) {
-		// TODO Auto-generated method stub
-		return null;
+	public Transfers getAmountFromAccount(String username, double amount) {
+		
+		
+		
+		String sql = "select amount "
+				+ "from transfers "
+				+ "inner join accounts "
+				+ "on transfers.account_from = accounts.account_id "
+				+ "inner join users "
+				+ "on accounts.user_id = users.user_id "
+				+ "where users.username = ? and amount = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username, amount);
+		
+		if(results.next()) {
+			return mapRowToTransfers(results);
+		} else {
+			return null;
+		}
+		
+	
 	}
 
 	@Override
@@ -99,5 +119,12 @@ public class JDBCTransfersDAO implements TransfersDAO {
 		transfersRow.setTransferStatus(results.getString("transfer_status_desc"));
 		return transfersRow;
 		
+	}
+
+
+	@Override
+	public List<Transfers> getAllTransfers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
