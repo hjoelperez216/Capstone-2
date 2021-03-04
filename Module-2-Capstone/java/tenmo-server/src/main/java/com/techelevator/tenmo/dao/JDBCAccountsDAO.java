@@ -17,7 +17,7 @@ public class JDBCAccountsDAO implements AccountsDAO {
 	
 	@Override
 	public Accounts findAccountByUserId(Long userId) {
-		String sql = "select account_id from accounts where user_id = ?";
+		String sql = "select * from accounts where user_id = ?";
 		
 		SqlRowSet results =  jdbcTemplate.queryForRowSet(sql,userId);
 		if(results.next()) {

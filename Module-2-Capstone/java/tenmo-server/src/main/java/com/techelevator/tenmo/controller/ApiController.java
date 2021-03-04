@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class ApiController {
 	private AccountsDAO accountsDAO;
 	private TransfersDAO transfersDAO;
 	private UserDAO userDAO;
+	private static final String BASE_URL = "http://localhost:8080";
 	
 	public ApiController() {
 		this.accountsDAO = accountsDAO;
@@ -38,7 +40,8 @@ public class ApiController {
 
 	//Accounts
 //-----------------------------------------------------------------------------------------------
-	@RequestMapping(path ="/accounts/user/{id}", method=RequestMethod.GET)
+	@PreAuthorize("permitAll()")
+	@RequestMapping(path =BASE_URL+"/accounts/user/{id}", method=RequestMethod.GET)
 	public Accounts findAccountByUserId(@PathVariable Long userId) {
 		
 		logAPICall("Called with path");
