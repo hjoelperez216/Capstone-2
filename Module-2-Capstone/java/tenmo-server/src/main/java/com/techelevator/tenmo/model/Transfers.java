@@ -8,7 +8,27 @@ public class Transfers {
 	private int accountFrom;
 	private int accountTo;
 	private double amount;
+	private String transferType;
+	private String transferStatus;
 	
+	
+	
+	public String getTransferType() {
+		return transferType;
+	}
+
+	public void setTransferType(String transferType) {
+		this.transferType = transferType;
+	}
+
+	public String getTransferStatus() {
+		return transferStatus;
+	}
+
+	public void setTransferStatus(String transferStatus) {
+		this.transferStatus = transferStatus;
+	}
+
 	public Transfers() {
 		this.transferId        = transferId;
 		this.transferTypeId    = transferTypeId;
@@ -106,8 +126,10 @@ public class Transfers {
 	public String toString() {
 		return "Transfers [transferId=" + transferId + ", transferTypeId=" + transferTypeId + ", transferStatusId="
 				+ transferStatusId + ", accountFrom=" + accountFrom + ", accountTo=" + accountTo + ", amount=" + amount
-				+ "]";
+				+ ", transferType=" + transferType + ", transferStatus=" + transferStatus + "]";
 	}
+
+
 
 	
 	

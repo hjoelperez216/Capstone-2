@@ -12,5 +12,6 @@ public interface TransfersDAO {
           Transfers getAmountToAccount(Long transferId,int accountTo,double amount);
           Transfers create(Long transferId,int transferTypeId,int transferStatusId,int accountFrom,int accountTo,double amount);
           Transfers getTransferByTransferId(Long TransferId);
-          
+          Transfers getTransferType(Long transferId);
+          Transfers getStatus(Long transferId);
 }
