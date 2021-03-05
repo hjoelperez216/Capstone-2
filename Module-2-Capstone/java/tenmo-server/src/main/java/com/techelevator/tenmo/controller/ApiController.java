@@ -65,14 +65,14 @@ public class ApiController {
 	}
 	
 	@RequestMapping(path="/accounts/user/{userId}/balance", method=RequestMethod.GET)
-	public Accounts getBalanceByUserId(@PathVariable Long userId) {
+	public Double getBalanceByUserId(@PathVariable Long userId) {
 		
 		logAPICall("Called with path");
 		
 		return accountsDAO.getBalanceByUserId(userId);
 	}
 	
-	@RequestMapping(path="/accounts/account/{userId}/balance", method=RequestMethod.GET)
+	@RequestMapping(path="/balance/{userId}", method=RequestMethod.GET)
 	public Accounts getBalanceByAccountId(@PathVariable Long userId) {
 		
 		logAPICall("Called with path");

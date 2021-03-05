@@ -57,15 +57,15 @@ public class JDBCAccountsDAO implements AccountsDAO {
 	
 
 	@Override
-	public Accounts getBalanceByUserId(Long userId) {
-		String sql = "select balance from accounts where user_id = ?";
+	public Double getBalanceByUserId(Long userId) {
+		String sql = "select * from accounts where user_id = ?";
 		
+		Double balance = null;
 		SqlRowSet results =  jdbcTemplate.queryForRowSet(sql,userId);
 		if(results.next()) {
-			return mapRowToAccounts(results);
-		} else {
-			return null;
+		balance = results.getDouble("balance");
 		}
+		return balance;
 	}
 	
 
