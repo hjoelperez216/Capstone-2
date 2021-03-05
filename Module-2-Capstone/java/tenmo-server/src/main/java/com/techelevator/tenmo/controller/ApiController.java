@@ -19,6 +19,7 @@ import com.techelevator.tenmo.dao.UserDAO;
 import com.techelevator.tenmo.dao.UserSqlDAO;
 import com.techelevator.tenmo.model.Accounts;
 import com.techelevator.tenmo.model.Transfers;
+import com.techelevator.tenmo.model.User;
 
 /*******************************************************************************************************
  * This is where you code any API controllers you may create
@@ -48,7 +49,7 @@ public class ApiController {
 		
 		return accountsDAO.findAccountByUserId(userId);	
 	}
-	
+	@PreAuthorize("permitAll()")
 	@RequestMapping(path="/accounts/account/{id}", method=RequestMethod.GET)
 	public Accounts findAccountByAccountId(@PathVariable Long accountId) {
 		
@@ -97,7 +98,7 @@ public class ApiController {
 		return theTransfers;
 	}
 	
-	@RequestMapping(path="accounts/transfers/username/{amount}", method=RequestMethod.GET)
+	@RequestMapping(path="/accounts/transfers/username/{amount}", method=RequestMethod.GET)
 	public Transfers getAmountFromAccount(@PathVariable String username, double amount) {
 		
 		logAPICall("Called with path");
@@ -106,7 +107,7 @@ public class ApiController {
 		
 	}
 	
-	@RequestMapping(path="accounts/{username}/new_transfer", method=RequestMethod.POST)
+	@RequestMapping(path="/accounts/{username}/new_transfer", method=RequestMethod.POST)
 	public Transfers create(@RequestBody Long transferId, int transferStatusId, int accountFrom, int accountTo, double amount,
 							@PathVariable("username") String username) {
 		
@@ -116,7 +117,7 @@ public class ApiController {
 		return transfersDAO.create(transferId, transferStatusId, accountFrom, accountTo, accountTo, amount);
 	}
 	
-	@RequestMapping(path="account/transfers/{transferId}", method=RequestMethod.GET)
+	@RequestMapping(path="/account/transfers/{transferId}", method=RequestMethod.GET)
 	public Transfers getTransferByTransferId(@PathVariable Long transferId) {
 		
 		logAPICall("Called with path");
@@ -124,7 +125,7 @@ public class ApiController {
 		return transfersDAO.getTransferByTransferId(transferId);
 	}
 	
-	@RequestMapping(path="account/transfers/transferId/{type}", method=RequestMethod.GET)
+	@RequestMapping(path="/account/transfers/transferId/{type}", method=RequestMethod.GET)
 	public Transfers getTransferType(@PathVariable Long transferId) {
 		
 		logAPICall("Called with path");
@@ -132,7 +133,7 @@ public class ApiController {
 		return transfersDAO.getTransferType(transferId);
 	}	
 	
-	@RequestMapping(path="account/transfers/transferId/{transfer_status}", method=RequestMethod.GET)
+	@RequestMapping(path="/account/transfers/transferId/{transfer_status}", method=RequestMethod.GET)
 	public Transfers getStatus(@PathVariable Long transferId) {
 		
 		logAPICall("Called with path");
@@ -144,13 +145,35 @@ public class ApiController {
 	//Users
 //-----------------------------------------------------------------------------------------------	
 			
+	@RequestMapping(path = "/user/{username}", method=RequestMethod.GET)
+	public User findByUsername(@PathVariable String username) {
+		
+		logAPICall("Called with path");
+
+		
+		return userDAO.findByUsername(username);
+		
+	}
 	
+	@RequestMapping(path= "/user/{username}/id", method=RequestMethod.GET)
+	public int findIdByUsername(@PathVariable String username) {
+		
+		logAPICall("Called with path");
+
+		
+		return userDAO.findIdByUsername(username);
+	}
 	
-	
-	
+	@RequestMapping(path="/user/create", method=RequestMethod.POST)
+	public boolean create(@RequestBody String username, String password) {
+		
+		logAPICall("Called with path");
+
+		
+		return userDAO.create(username, password);
+	}
 	
 
-	
 	
 public void logAPICall(String message) {	  //Write a message with a timestamp to the server log
 		 LocalDateTime now = LocalDateTime.now(); 
