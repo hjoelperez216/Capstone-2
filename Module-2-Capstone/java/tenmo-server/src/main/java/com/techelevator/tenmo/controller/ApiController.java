@@ -139,12 +139,12 @@ public class ApiController {
 		return transfersDAO.getTransferType(transferId);
 	}	
 	
-	@RequestMapping(path="/account/transfers/transferId/{transfer_status}", method=RequestMethod.GET)
-	public Transfers getStatus(@PathVariable Long transferId) {
+	@RequestMapping(path="/account/transfers/transferId/status/{transferStatusId}", method=RequestMethod.GET)
+	public Transfers getStatus(@PathVariable Long transferStatusId) {
 		
 		logAPICall("Called with path");
 
-		return transfersDAO.getStatus(transferId);
+		return transfersDAO.getStatus(transferStatusId);
 	}	
 	
 	

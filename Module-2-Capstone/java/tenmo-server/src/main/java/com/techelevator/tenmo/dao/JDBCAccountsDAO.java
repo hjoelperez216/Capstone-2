@@ -71,7 +71,7 @@ public class JDBCAccountsDAO implements AccountsDAO {
 
 	@Override
 	public Accounts getBalanceByAccountId(Long accountId) {
-		String sql = "select balance from accounts where account_id = ?";
+		String sql = "select * from accounts where account_id = ?";
 		
 		SqlRowSet results =  jdbcTemplate.queryForRowSet(sql,accountId);
 		if(results.next()) {
@@ -84,7 +84,7 @@ public class JDBCAccountsDAO implements AccountsDAO {
 	@Override
 	public Accounts getBalanceByUsername(String username) {
 		
-		String sql = "select balance "
+		String sql = "select * "
 				   + "from users "
 				   + "join accounts "
 				   + "on accounts.user_id = users.user_id "
