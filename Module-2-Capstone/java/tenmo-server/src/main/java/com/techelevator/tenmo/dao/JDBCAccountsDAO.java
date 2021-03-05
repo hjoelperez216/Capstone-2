@@ -1,5 +1,9 @@
 package com.techelevator.tenmo.dao;
 
+import java.text.DecimalFormat;
+
+import javax.sql.DataSource;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -10,11 +14,19 @@ import com.techelevator.tenmo.model.User;
 @Component
 public class JDBCAccountsDAO implements AccountsDAO {
 
+	
+	
 	private JdbcTemplate jdbcTemplate;
+	private DecimalFormat formatter = new DecimalFormat("0.00");
 	
 	public JDBCAccountsDAO(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
+	
+//	public JDBCAccountsDAO(DataSource dataSource) {
+//		this.jdbcTemplate = new JdbcTemplate(dataSource);
+//	}
+//	
 	
 	
 	@Override
@@ -27,11 +39,13 @@ public class JDBCAccountsDAO implements AccountsDAO {
 		} else {
 			return null;
 		}
+		
+//		return mapRowToAccounts(results);
 	}
 
 	@Override
 	public Accounts findAccountByAccountId(Long accountId) {
-		String sql = "select account_id from accounts where account_id = ?";
+		String sql = "select * from accounts where account_id = ?";
 		
 		SqlRowSet results =  jdbcTemplate.queryForRowSet(sql,accountId);
 		if(results.next()) {
@@ -77,6 +91,7 @@ public class JDBCAccountsDAO implements AccountsDAO {
 				   + "where username = ?";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+		
 		
 		
 		if(results.next()) {

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,26 +33,30 @@ public class ApiController {
 	private TransfersDAO transfersDAO;
 	private UserDAO userDAO;
 	private static final String BASE_URL = "http://localhost:8080";
+
+
 	
-	public ApiController() {
+	public ApiController(AccountsDAO accountsDAO, TransfersDAO transfersDAO, UserDAO userDAO) {
 		this.accountsDAO = accountsDAO;
 		this.transfersDAO = transfersDAO;
 		this.userDAO = userDAO;
 	}
 
+	
+	
 
 	//Accounts
 //-----------------------------------------------------------------------------------------------
 	@PreAuthorize("permitAll()")
-	@RequestMapping(path =BASE_URL+"/accounts/user/{id}", method=RequestMethod.GET)
+	@RequestMapping(path ="/accounts/user/{userId}", method=RequestMethod.GET)
 	public Accounts findAccountByUserId(@PathVariable Long userId) {
 		
-		logAPICall("Called with path");
+//		logAPICall("Called with path");
 		
 		return accountsDAO.findAccountByUserId(userId);	
 	}
 	@PreAuthorize("permitAll()")
-	@RequestMapping(path="/accounts/account/{id}", method=RequestMethod.GET)
+	@RequestMapping(path="/accounts/account/{accountId}", method=RequestMethod.GET)
 	public Accounts findAccountByAccountId(@PathVariable Long accountId) {
 		
 		logAPICall("Called with path");
@@ -58,7 +64,7 @@ public class ApiController {
 		return accountsDAO.findAccountByAccountId(accountId);
 	}
 	
-	@RequestMapping(path="/accounts/user/{id}/balance", method=RequestMethod.GET)
+	@RequestMapping(path="/accounts/user/{userId}/balance", method=RequestMethod.GET)
 	public Accounts getBalanceByUserId(@PathVariable Long userId) {
 		
 		logAPICall("Called with path");
@@ -66,7 +72,7 @@ public class ApiController {
 		return accountsDAO.getBalanceByUserId(userId);
 	}
 	
-	@RequestMapping(path="/accounts/account/{id}/balance", method=RequestMethod.GET)
+	@RequestMapping(path="/accounts/account/{userId}/balance", method=RequestMethod.GET)
 	public Accounts getBalanceByAccountId(@PathVariable Long userId) {
 		
 		logAPICall("Called with path");
