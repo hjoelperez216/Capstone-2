@@ -16,8 +16,9 @@ public class JDBCTransfersDAO implements TransfersDAO {
 	
 	private JdbcTemplate jdbcTemplate;
 	
-	public JDBCTransfersDAO(JdbcTemplate jdbcTemplate) {
+	public JDBCTransfersDAO(JdbcTemplate jdbcTemplate, AccountsDAO accountDAO) {
 		this.jdbcTemplate = jdbcTemplate;
+		this.accountDAO = accountDAO;
 	}
 	
 	AccountsDAO accountDAO;
@@ -50,7 +51,7 @@ public class JDBCTransfersDAO implements TransfersDAO {
 	}
 
 	@Override
-	public String sendAmount(Long sender, Long receiver, double amount) {
+	public String create(Long sender, Long receiver, double amount) {
 		if (sender == receiver) {
 			//	return "Sender & receiver cannot be the same";
 		}
@@ -60,8 +61,9 @@ public class JDBCTransfersDAO implements TransfersDAO {
 		double balance = 0;
 		balance = account.getBalance();
 		if (balance > amount) {
-			String sendTransfer = "insert into transfers(transfer_type_id, transfer_status_id, account_from, account_to, amount vakues (2,2,?,?,?)";
+			String sendTransfer = "insert into transfers(transfer_type_id, transfer_status_id, account_from, account_to, amount values (2,2,?,?,?)";
 			jdbcTemplate.update(sendTransfer, sender, receiver, amount);
+			
 			accountDAO.addBalance(amount, receiver);
 			accountDAO.subBalance(amount, sender);
 			return "Transfer completed";
@@ -82,19 +84,29 @@ public class JDBCTransfersDAO implements TransfersDAO {
 	}
 
 	
-	@Override
-	public Transfers create(Long transferId, int transferTypeId, int transferStatusId, int accountFrom, int accountTo,
-			double amount) {
-		String sql =  "insert into transfers(transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount) values (?,?,?,?,?,?)";
-		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, transferId, transferTypeId, transferStatusId, accountFrom, accountTo);
-		if(results.next()) {
-			return mapRowToTransfers(results);
-		} else {
-			return null;
-		}
-		
-	}
+//	@Override
+//	public String createOld(Long accountFrom, Long accountTo,double amount) {
+//		
+//		
+//		
+//		String sql =  "insert into transfers(transfer_type_id, transfer_status_id, account_from, account_to, amount) values (2,2,?,?,?)";
+//		
+//		jdbcTemplate.update(sql, accountFrom, accountTo, amount);
+//		
+//		
+////		if(results.next()) {
+////			return mapRowToTransfers(results);
+////		} else {
+////			return null;
+////		}
+////		
+//		accountDAO.addBalance(amount, accountTo);
+//		accountDAO.subBalance(amount, accountFrom);
+//		
+//		
+//		return "Transfer completed";
+//		
+//	}
 
 	@Override
 	public Transfers getTransferByTransferId(Long TransferId) {
@@ -138,13 +150,19 @@ public class JDBCTransfersDAO implements TransfersDAO {
 		transfersRow.setTransferId      (results.getLong("transfer_id"));
 		transfersRow.setTransferTypeId  (results.getInt("transfer_type_id"));
 		transfersRow.setTransferStatusId(results.getInt("transer_status_id"));
-		transfersRow.setAccountFrom     (results.getInt("account_from"));
-		transfersRow.setAccountTo       (results.getInt("account_to"));
+		transfersRow.setAccountFrom     (results.getLong("account_from"));
+		transfersRow.setAccountTo       (results.getLong("account_to"));
 		transfersRow.setAmount          (results.getDouble("amount"));
 		transfersRow.setTransferType    (results.getString("transfer_type_desc"));
 		transfersRow.setTransferStatus  (results.getString("transfer_status_desc"));
 		return transfersRow;
 		
+	}
+
+	@Override
+	public String sendAmount(Long sender, Long receiver, double amount) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

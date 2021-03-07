@@ -5,30 +5,13 @@ public class Transfers {
 	private Long transferId;
 	private int transferTypeId;
 	private int transferStatusId;
-	private int accountFrom;
-	private int accountTo;
+	private Long accountFrom;
+	private Long accountTo;
 	private double amount;
 	private String transferType;
 	private String transferStatus;
 	
 	
-	
-	public String getTransferType() {
-		return transferType;
-	}
-
-	public void setTransferType(String transferType) {
-		this.transferType = transferType;
-	}
-
-	public String getTransferStatus() {
-		return transferStatus;
-	}
-
-	public void setTransferStatus(String transferStatus) {
-		this.transferStatus = transferStatus;
-	}
-
 	public Transfers() {
 		this.transferId        = transferId;
 		this.transferTypeId    = transferTypeId;
@@ -38,89 +21,86 @@ public class Transfers {
 		this.amount            = amount;	
 	}
 
-	/**
-	 * @return the transferId
-	 */
+
 	public Long getTransferId() {
 		return transferId;
 	}
 
-	/**
-	 * @param transferId the transferId to set
-	 */
+
 	public void setTransferId(Long transferId) {
 		this.transferId = transferId;
 	}
 
-	/**
-	 * @return the transferTypeId
-	 */
+
 	public int getTransferTypeId() {
 		return transferTypeId;
 	}
 
-	/**
-	 * @param transferTypeId the transferTypeId to set
-	 */
+
 	public void setTransferTypeId(int transferTypeId) {
 		this.transferTypeId = transferTypeId;
 	}
 
-	/**
-	 * @return the transferStatusId
-	 */
+
 	public int getTransferStatusId() {
 		return transferStatusId;
 	}
 
-	/**
-	 * @param transferStatusId the transferStatusId to set
-	 */
+
 	public void setTransferStatusId(int transferStatusId) {
 		this.transferStatusId = transferStatusId;
 	}
 
-	/**
-	 * @return the accountFrom
-	 */
-	public int getAccountFrom() {
+
+	public Long getAccountFrom() {
 		return accountFrom;
 	}
 
-	/**
-	 * @param accountFrom the accountFrom to set
-	 */
-	public void setAccountFrom(int accountFrom) {
+
+	public void setAccountFrom(Long accountFrom) {
 		this.accountFrom = accountFrom;
 	}
 
-	/**
-	 * @return the accountTo
-	 */
-	public int getAccountTo() {
+
+	public Long getAccountTo() {
 		return accountTo;
 	}
 
-	/**
-	 * @param accountTo the accountTo to set
-	 */
-	public void setAccountTo(int accountTo) {
+
+	public void setAccountTo(Long accountTo) {
 		this.accountTo = accountTo;
 	}
 
-	/**
-	 * @return the amount
-	 */
+
 	public double getAmount() {
 		return amount;
 	}
 
-	/**
-	 * @param amount the amount to set
-	 */
+
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
+
+	public String getTransferType() {
+		return transferType;
+	}
+
+
+	public void setTransferType(String transferType) {
+		this.transferType = transferType;
+	}
+
+
+	public String getTransferStatus() {
+		return transferStatus;
+	}
+
+
+	public void setTransferStatus(String transferStatus) {
+		this.transferStatus = transferStatus;
+	}
+
 
 	@Override
 	public String toString() {
@@ -128,6 +108,10 @@ public class Transfers {
 				+ transferStatusId + ", accountFrom=" + accountFrom + ", accountTo=" + accountTo + ", amount=" + amount
 				+ ", transferType=" + transferType + ", transferStatus=" + transferStatus + "]";
 	}
+
+	/**
+	 * @return the transferId
+	 */
 
 
 

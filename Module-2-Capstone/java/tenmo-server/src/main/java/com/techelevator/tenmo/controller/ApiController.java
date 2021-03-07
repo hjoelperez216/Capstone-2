@@ -115,14 +115,14 @@ public class ApiController {
 		
 	}
 	
-	@RequestMapping(path="/accounts/{username}/new_transfer", method=RequestMethod.POST)
-	public Transfers create(@RequestBody Long transferId, int transferStatusId, int accountFrom, int accountTo, double amount,
-							@PathVariable("username") String username) {
+//	@PreAuthorize("permitAll()")
+	@RequestMapping(path="/new_transfer", method=RequestMethod.POST)
+	public String create(@RequestBody Transfers newTransfer) {
 		
 		logAPICall("Called with path");
 
-		
-		return transfersDAO.create(transferId, transferStatusId, accountFrom, accountTo, accountTo, amount);
+		return transfersDAO.create(newTransfer.getAccountFrom(), newTransfer.getAccountTo(), newTransfer.getAmount());
+	
 	}
 	
 	@RequestMapping(path="/account/transfers/{transferId}", method=RequestMethod.GET)
@@ -179,6 +179,13 @@ public class ApiController {
 
 		
 		return userDAO.create(username, password);
+	}
+	
+	@RequestMapping(path="/users", method=RequestMethod.GET)
+	public List<User> findAll() {
+		logAPICall("Called with path");
+		
+		return userDAO.findAll();
 	}
 	
 

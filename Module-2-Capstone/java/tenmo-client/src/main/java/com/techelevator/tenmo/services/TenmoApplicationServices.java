@@ -47,7 +47,7 @@ public class TenmoApplicationServices {
 	
 	public Transfers[] listTransfers(AuthenticatedUser authUser) {
 		Transfers[] transfers;
-		transfers = restTemplate.exchange(BASE_URL + "/accounts/transfers/" + authUser.getUser().getUsername(), HttpMethod.GET, makeAuthEntity(authUser), Transfers[].class).getBody();
+		transfers = restTemplate.exchange(BASE_URL + "accounts/transfers/" + authUser.getUser().getUsername(), HttpMethod.GET, makeAuthEntity(authUser), Transfers[].class).getBody();
 		for(Transfers theTransfers : transfers) {
 			System.out.println("Transfers:     " +theTransfers.toString());
 		}
@@ -57,7 +57,7 @@ public class TenmoApplicationServices {
 	public void sendAmount (AuthenticatedUser authUser) {
 		User[] users;
 		Transfers transfer = new Transfers();
-		users = restTemplate.exchange(BASE_URL = "users", HttpMethod.GET, makeAuthEntity(authUser), User[].class).getBody();
+		users = restTemplate.exchange(BASE_URL + "users", HttpMethod.GET, makeAuthEntity(authUser), User[].class).getBody();
 		for(User i : users) {
 			if(i.getId() != authUser.getUser().getId()) {
 				System.out.println(i.getId() + ": " + i.getUsername());
@@ -67,14 +67,14 @@ public class TenmoApplicationServices {
 		transfer.setAccount_from(authUser.getUser().getId());
 		
 		transfer.setAmount(consoleService.getUserInputInteger("Enter amount:"));
-		String out = restTemplate.exchange(BASE_URL + "/transfers", HttpMethod.POST, makeTransfersEntity(transfer, authUser), String.class).getBody();
+		String out = restTemplate.exchange(BASE_URL + "new_transfer", HttpMethod.POST, makeTransfersEntity(transfer, authUser), String.class).getBody();
 		System.out.print(out);
 	}
 	
 	
 	public User[] getUsers(AuthenticatedUser user) {
 		User[] users;
-		users = restTemplate.exchange(BASE_URL + "/users", HttpMethod.GET, makeAuthEntity(authUser), User[].class).getBody();
+		users = restTemplate.exchange(BASE_URL + "users", HttpMethod.GET, makeAuthEntity(authUser), User[].class).getBody();
 		for (User i : users) {
 			System.out.println(i);
 		}
