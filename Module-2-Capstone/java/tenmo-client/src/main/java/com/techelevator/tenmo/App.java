@@ -26,7 +26,9 @@ private static final String API_BASE_URL = "http://localhost:8080/";
     private AuthenticatedUser currentUser;
     private ConsoleService console;
     private AuthenticationService authenticationService;
+	private TenmoApplicationServices balanceService = new TenmoApplicationServices(API_BASE_URL);
 
+    
     public static void main(String[] args) {
     	App app = new App(new ConsoleService(System.in, System.out), new AuthenticationService(API_BASE_URL));
     	app.run();
@@ -68,15 +70,13 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 		}
 	}
 
-	private void viewCurrentBalance() {
-		TenmoApplicationServices balanceService = new TenmoApplicationServices(currentUser, API_BASE_URL);
-		balanceService.getBalance();
+	private void viewCurrentBalance() {		
+		balanceService.getBalance(currentUser);
 		
 	}
 
 	private void viewTransferHistory() {
-		// TODO Auto-generated method stub
-		
+		balanceService.listTransfers(currentUser);
 	}
 
 	private void viewPendingRequests() {
@@ -85,8 +85,7 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 	}
 
 	private void sendBucks() {
-		// TODO Auto-generated method stub
-		
+		balanceService.sendAmount(currentUser);
 	}
 
 	private void requestBucks() {

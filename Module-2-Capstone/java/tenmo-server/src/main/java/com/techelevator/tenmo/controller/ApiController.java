@@ -64,15 +64,15 @@ public class ApiController {
 		return accountsDAO.findAccountByAccountId(accountId);
 	}
 	
-	@RequestMapping(path="/accounts/user/{userId}/balance", method=RequestMethod.GET)
-	public Double getBalanceByUserId(@PathVariable Long userId) {
+	@RequestMapping(path="balance/{userId}", method=RequestMethod.GET)
+	public double getBalanceByUserId(@PathVariable Long userId) {
 		
 		logAPICall("Called with path");
 		
 		return accountsDAO.getBalanceByUserId(userId);
 	}
 	
-	@RequestMapping(path="/balance/{userId}", method=RequestMethod.GET)
+	@RequestMapping(path="/balance/{userId}/account", method=RequestMethod.GET) //changed this..
 	public Accounts getBalanceByAccountId(@PathVariable Long userId) {
 		
 		logAPICall("Called with path");
@@ -87,6 +87,8 @@ public class ApiController {
 		
 		return accountsDAO.getBalanceByUsername(username);
 	}
+	
+	
 
 	
 	//Transfers
@@ -109,7 +111,7 @@ public class ApiController {
 		
 		logAPICall("Called with path");
 
-		return transfersDAO.getAmountFromAccount(username, amount);
+		return null;//transfersDAO.sendAmount(username, amount);
 		
 	}
 	

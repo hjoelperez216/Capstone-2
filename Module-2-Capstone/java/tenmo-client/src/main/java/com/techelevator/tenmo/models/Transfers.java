@@ -6,10 +6,10 @@ public class Transfers {
 	private int transfer_type_id;
 	private int transfer_status_id;
 	private int account_from;
-	private int account_to;
+	private Long account_to;
 	private double amount;
 	
-	public Transfers(Long transfer_id, int transfer_type_id, int transfer_status_id, int account_from, int account_to, double amount) {
+	public Transfers() {
 		this.transfer_id        = transfer_id;
 		this.transfer_type_id   = transfer_type_id;
 		this.transfer_status_id = transfer_status_id;
@@ -70,13 +70,13 @@ public class Transfers {
 	/**
 	 * @return the account_to
 	 */
-	public int getAccount_to() {
+	public Long getAccount_to() {
 		return account_to;
 	}
 	/**
-	 * @param account_to the account_to to set
+	 * @param l the account_to to set
 	 */
-	public void setAccount_to(int account_to) {
+	public void setAccount_to(Long account_to) {
 		this.account_to = account_to;
 	}
 	/**
@@ -88,7 +88,7 @@ public class Transfers {
 	/**
 	 * @param amount the amount to set
 	 */
-	public void setAmount(int amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 	

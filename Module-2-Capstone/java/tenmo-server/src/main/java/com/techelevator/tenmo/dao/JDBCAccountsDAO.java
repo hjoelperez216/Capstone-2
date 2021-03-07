@@ -57,7 +57,7 @@ public class JDBCAccountsDAO implements AccountsDAO {
 	
 
 	@Override
-	public Double getBalanceByUserId(Long userId) {
+	public double getBalanceByUserId(Long userId) {
 		String sql = "select * from accounts where user_id = ?";
 		
 		Double balance = null;
@@ -65,7 +65,7 @@ public class JDBCAccountsDAO implements AccountsDAO {
 		if(results.next()) {
 		balance = results.getDouble("balance");
 		}
-		return balance;
+		return balance;	
 	}
 	
 
@@ -108,5 +108,29 @@ public class JDBCAccountsDAO implements AccountsDAO {
 	        accountRow.setBalance(results.getDouble("balance"));
 	        return accountRow;
 	  }
+
+	@Override
+	public double addBalance(double add, Long id) {
+		Accounts account = findAccountByAccountId(id);
+		double newbalance = account.getBalance();
+		newbalance += add;
+		
+		String sql = "update accounts set balance = ? where user_id =?";
+		
+		jdbcTemplate.update(sql, newbalance, id);
+		return newbalance;
+	}
+	
+	@Override
+	public double subBalance(double sub, Long id) {
+		Accounts account = findAccountByAccountId(id);
+		double newbalance = account.getBalance();
+		newbalance -= sub;
+		
+		String sql = "update accounts set balance = ? where user_id =?";
+		
+		jdbcTemplate.update(sql, newbalance, id);
+		return newbalance;
+	}
 
 }

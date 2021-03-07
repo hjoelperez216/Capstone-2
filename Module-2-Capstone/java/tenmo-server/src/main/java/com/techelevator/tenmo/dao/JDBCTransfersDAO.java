@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.techelevator.tenmo.model.Accounts;
 import com.techelevator.tenmo.model.Transfers;
 import com.techelevator.tenmo.model.User;
 @Component
@@ -19,6 +20,7 @@ public class JDBCTransfersDAO implements TransfersDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
+	AccountsDAO accountDAO;
 	
 	@Override
 	public List<Transfers> getAllTransfers(String username) {
@@ -48,31 +50,33 @@ public class JDBCTransfersDAO implements TransfersDAO {
 	}
 
 	@Override
-	public Transfers getAmountFromAccount(String username, double amount) {
-		
-		
-		
-		String sql = "select amount "
-				+ "from transfers "
-				+ "inner join accounts "
-				+ "on transfers.account_from = accounts.account_id "
-				+ "inner join users "
-				+ "on accounts.user_id = users.user_id "
-				+ "where users.username = ? and amount = ?";
-		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username, amount);
-		
-		if(results.next()) {
-			return mapRowToTransfers(results);
-		} else {
-			return null;
+	public String sendAmount(Long sender, Long receiver, double amount) {
+		if (sender == receiver) {
+			//	return "Sender & receiver cannot be the same";
 		}
+		
+		Accounts account = new Accounts();
+		account = accountDAO.findAccountByAccountId(sender);
+		double balance = 0;
+		balance = account.getBalance();
+		if (balance > amount) {
+			String sendTransfer = "insert into transfers(transfer_type_id, transfer_status_id, account_from, account_to, amount vakues (2,2,?,?,?)";
+			jdbcTemplate.update(sendTransfer, sender, receiver, amount);
+			accountDAO.addBalance(amount, receiver);
+			accountDAO.subBalance(amount, sender);
+			return "Transfer completed";
+			
+		} else {
+			return "Not enough TEbucks for transfer";
+		}
+		
+	
 		
 	
 	}
 
 	@Override
-	public Transfers getAmountToAccount(Long transferId, int accountTo, double amount) {
+	public Transfers requestAmount(Long transferId, int accountTo, double amount) {
 		// TODO Auto-generated method stub
 		return null;
 	}
