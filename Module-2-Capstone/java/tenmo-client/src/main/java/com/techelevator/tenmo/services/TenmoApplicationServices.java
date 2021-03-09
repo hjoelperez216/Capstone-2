@@ -1,5 +1,7 @@
 package com.techelevator.tenmo.services;
 
+import java.text.DecimalFormat;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -23,7 +25,7 @@ public class TenmoApplicationServices {
 	private AuthenticatedUser authUser;
 	private String BASE_URL;
 	private final RestTemplate restTemplate = new RestTemplate();
-	
+	private DecimalFormat formatter = new DecimalFormat("0.00");
 	private ConsoleService consoleService = new ConsoleService(System.in, System.out);
 
 	public TenmoApplicationServices(String url) {
@@ -34,7 +36,7 @@ public class TenmoApplicationServices {
 	public double getBalance(AuthenticatedUser authUser) {
 		double balance = 0;
 		balance = restTemplate.exchange(BASE_URL + "balance/" + authUser.getUser().getId(), HttpMethod.GET, makeAuthEntity(authUser), Double.class).getBody();
-		System.out.println("This is how broke you currently are: $" + balance);
+		System.out.println("This is how broke you currently are: $" + formatter.format(balance));
 		return balance;
 	}
 	
@@ -63,10 +65,10 @@ public class TenmoApplicationServices {
 				System.out.println(i.getId() + ": " + i.getUsername());
 			}
 		}
-		transfer.setAccount_to(Long.parseLong(consoleService.getUserInput("Enter account ID to send $$: ")));
-		transfer.setAccount_from(authUser.getUser().getId());
+		transfer.setAccountTo(Long.parseLong(consoleService.getUserInput("Enter account ID to send $")));
+		transfer.setAccountFrom(authUser.getUser().getId());
 		
-		transfer.setAmount(consoleService.getUserInputInteger("Enter amount:"));
+		transfer.setAmount(consoleService.getUserInputInteger("Enter amount"));
 		String out = restTemplate.exchange(BASE_URL + "new_transfer", HttpMethod.POST, makeTransfersEntity(transfer, authUser), String.class).getBody();
 		System.out.print(out);
 	}

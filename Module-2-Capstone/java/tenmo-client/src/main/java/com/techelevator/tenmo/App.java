@@ -1,5 +1,7 @@
 package com.techelevator.tenmo;
 
+import java.text.DecimalFormat;
+
 import com.techelevator.tenmo.models.AuthenticatedUser;
 import com.techelevator.tenmo.models.UserCredentials;
 import com.techelevator.tenmo.services.AuthenticationService;
@@ -27,7 +29,7 @@ private static final String API_BASE_URL = "http://localhost:8080/";
     private ConsoleService console;
     private AuthenticationService authenticationService;
 	private TenmoApplicationServices balanceService = new TenmoApplicationServices(API_BASE_URL);
-
+	private DecimalFormat formatter = new DecimalFormat("0.00");
     
     public static void main(String[] args) {
     	App app = new App(new ConsoleService(System.in, System.out), new AuthenticationService(API_BASE_URL));

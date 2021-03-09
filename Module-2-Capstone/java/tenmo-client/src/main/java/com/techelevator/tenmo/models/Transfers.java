@@ -2,102 +2,76 @@ package com.techelevator.tenmo.models;
 
 public class Transfers {
 	
-	private Long transfer_id;
-	private int transfer_type_id;
-	private int transfer_status_id;
-	private int account_from;
-	private Long account_to;
+	private Long transferId;
+	private int transferTypeId;
+	private int transferStatusId;
+	private int accountFrom;
+	private Long accountTo;
 	private double amount;
 	
 	public Transfers() {
-		this.transfer_id        = transfer_id;
-		this.transfer_type_id   = transfer_type_id;
-		this.transfer_status_id = transfer_status_id;
-		this.account_from       = account_from;
-		this.account_to         = account_to;
+		this.transferId        = transferId;
+		this.transferTypeId   = transferTypeId;
+		this.transferStatusId = transferStatusId;
+		this.accountFrom       = accountFrom;
+		this.accountTo         = accountTo;
 		this.amount             = amount;	
 	}
-	
-	
-	/**
-	 * @return the transfer_id
-	 */
-	public Long getTransfer_id() {
-		return transfer_id;
+
+	public Long getTransferId() {
+		return transferId;
 	}
-	/**
-	 * @param transfer_id the transfer_id to set
-	 */
-	public void setTransfer_id(Long transfer_id) {
-		this.transfer_id = transfer_id;
+
+	public void setTransferId(Long transferId) {
+		this.transferId = transferId;
 	}
-	/**
-	 * @return the transfer_type_id
-	 */
-	public int getTransfer_type_id() {
-		return transfer_type_id;
+
+	public int getTransferTypeId() {
+		return transferTypeId;
 	}
-	/**
-	 * @param transfer_type_id the transfer_type_id to set
-	 */
-	public void setTransfer_type_id(int transfer_type_id) {
-		this.transfer_type_id = transfer_type_id;
+
+	public void setTransferTypeId(int transferTypeId) {
+		this.transferTypeId = transferTypeId;
 	}
-	/**
-	 * @return the transfer_status_id
-	 */
-	public int getTransfer_status_id() {
-		return transfer_status_id;
+
+	public int getTransferStatusId() {
+		return transferStatusId;
 	}
-	/**
-	 * @param transfer_status_id the transfer_status_id to set
-	 */
-	public void setTransfer_status_id(int transfer_status_id) {
-		this.transfer_status_id = transfer_status_id;
+
+	public void setTransferStatusId(int transferStatusId) {
+		this.transferStatusId = transferStatusId;
 	}
-	/**
-	 * @return the account_from
-	 */
-	public int getAccount_from() {
-		return account_from;
+
+	public int getAccountFrom() {
+		return accountFrom;
 	}
-	/**
-	 * @param account_from the account_from to set
-	 */
-	public void setAccount_from(int account_from) {
-		this.account_from = account_from;
+
+	public void setAccountFrom(int accountFrom) {
+		this.accountFrom = accountFrom;
 	}
-	/**
-	 * @return the account_to
-	 */
-	public Long getAccount_to() {
-		return account_to;
+
+	public Long getAccountTo() {
+		return accountTo;
 	}
-	/**
-	 * @param l the account_to to set
-	 */
-	public void setAccount_to(Long account_to) {
-		this.account_to = account_to;
+
+	public void setAccountTo(Long accountTo) {
+		this.accountTo = accountTo;
 	}
-	/**
-	 * @return the amount
-	 */
+
 	public double getAmount() {
 		return amount;
 	}
-	/**
-	 * @param amount the amount to set
-	 */
+
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "transfers [transfer_id=" + transfer_id + ", transfer_type_id=" + transfer_type_id
-				+ ", transfer_status_id=" + transfer_status_id + ", account_from=" + account_from + ", account_to="
-				+ account_to + ", amount=" + amount + "]";
+		return "Transfers [transferId=" + transferId + ", transferTypeId=" + transferTypeId + ", transferStatusId="
+				+ transferStatusId + ", accountFrom=" + accountFrom + ", accountTo=" + accountTo + ", amount=" + amount
+				+ "]";
 	}
-
-	
 }
+	
+	

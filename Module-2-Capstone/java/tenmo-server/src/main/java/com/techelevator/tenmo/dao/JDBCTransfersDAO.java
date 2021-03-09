@@ -61,7 +61,7 @@ public class JDBCTransfersDAO implements TransfersDAO {
 		double balance = 0;
 		balance = account.getBalance();
 		if (balance > amount) {
-			String sendTransfer = "insert into transfers(transfer_type_id, transfer_status_id, account_from, account_to, amount values (2,2,?,?,?)";
+			String sendTransfer = "insert into transfers(transfer_type_id, transfer_status_id, account_from, account_to, amount) values (2,2,?,?,?)";
 			jdbcTemplate.update(sendTransfer, sender, receiver, amount);
 			
 			accountDAO.addBalance(amount, receiver);
